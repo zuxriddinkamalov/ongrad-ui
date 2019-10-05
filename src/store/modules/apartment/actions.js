@@ -9,8 +9,8 @@ import axios, { getPayloadFromSuccess, getPayloadFromError } from '@/plugins/axi
 import { SET_APARTMENT_STATE } from './mutation-types'
 
 export default {
-  getApartments ({ commit }) {
-    return axios.get(API.GET_APARTMENT_LIST)
+  getApartments ({ commit }, params) {
+    return axios.get(API.GET_APARTMENT_LIST, { params })
       .then(response => commit(SET_APARTMENT_STATE, getPayloadFromSuccess(response)))
       .catch(getPayloadFromError)
   }
