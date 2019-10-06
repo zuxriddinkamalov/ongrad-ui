@@ -1,3 +1,8 @@
 {
-  "pluginsFile": "tests/e2e/plugins/index.js"
+  "video": false,
+  "defaultCommandTimeout": 10000,
+  "env": {
+    "api_server": "https://ongrad.herokuapp.com"
+  },
+  "integrationFolder": "tests/e2e/integration"
 }

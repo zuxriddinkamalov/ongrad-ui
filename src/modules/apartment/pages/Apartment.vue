@@ -3,10 +3,10 @@
     <el-row>
       <el-form ref="form" :model="filter" label-width="120px">
         <el-form-item label="Min price">
-          <el-input v-model="filter.min_price"></el-input>
+          <el-input v-model="filter.min_price" data-cy="min-price"></el-input>
         </el-form-item>
         <el-form-item label="Max price">
-          <el-input v-model="filter.max_price"></el-input>
+          <el-input v-model="filter.max_price" data-cy="max-price"></el-input>
         </el-form-item>
         <el-form-item label="Комнатность">
           <el-select
@@ -14,7 +14,9 @@
             multiple
             filterable
             default-first-option
-            placeholder="Комнатность">
+            placeholder="Комнатность"
+            data-cy="rooms"
+          >
             <el-option
               v-for="item in 10"
               :key="item"
@@ -32,6 +34,7 @@
               placeholder="Pick a date"
               v-model="filter.year_after"
               style="width: 100%;"
+              data-cy="year-after"
             ></el-date-picker>
           </el-col>
           <el-col :span="11">
@@ -42,38 +45,39 @@
               placeholder="Pick a date"
               v-model="filter.year_before"
               style="width: 100%;"
+              data-cy="year-before"
             ></el-date-picker>
           </el-col>
         </el-form-item>
         <el-form-item label="Этажность">
           <el-col :span="6">
-            <el-checkbox v-model="filter.not_first_last">не первый не последний</el-checkbox>
+            <el-checkbox v-model="filter.not_first_last" data-cy="not-first-last">не первый не последний</el-checkbox>
           </el-col>
           <el-col :span="9">
-            <el-input v-model="filter.start_floor"></el-input>
+            <el-input v-model="filter.start_floor" data-cy="start-floor"></el-input>
           </el-col>
           <el-col :span="9">
-            <el-input v-model="filter.last_floor"></el-input>
+            <el-input v-model="filter.last_floor" data-cy="last-floor"></el-input>
           </el-col>
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" @click="() => loadData()">filter</el-button>
+          <el-button type="primary" @click="() => loadData()" data-cy="submit-button">filter</el-button>
         </el-form-item>
       </el-form>
     </el-row>
     <div>
       Квартиры
-      По вашему запросу найдено квартир: {{ count }}
+      По вашему запросу найдено квартир: <span data-cy="count-wrap">{{ count }}</span>
     </div>
     <el-row :gutter="20">
-      <el-col :span="6" v-for="item in data" :key="item.id">
+      <el-col :span="6" v-for="item in data" :key="item.id" data-cy="card-wrap">
         <el-card :body-style="{ padding: '0px' }">
           <div slot="header" class="clearfix">
             <span>{{ item.rooms }} комнатная</span>
           </div>
           <img :alt="item.address" src="https://picsum.photos/200/300" class="image" />
           <div style="padding: 14px;" class="text item">
-            <div class="item text">Аддрес: {{ item.address }}</div>
+            <div class="item text">Адрес: {{ item.address }}</div>
             <div class="item text">Цена: {{ item.price }} р.</div>
             <div class="item text">Год: {{ item.year }} р.</div>
           </div>
