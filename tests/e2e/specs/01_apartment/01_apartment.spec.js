@@ -19,12 +19,12 @@ const selector = {
   }
 }
 
-context('Apartment', () => {
+context('Apartment filter', () => {
   beforeEach(() => {
     cy.server()
   })
 
-  it('Filter not exists', () => {
+  it('Filter', () => {
     const minPrice = 2000000
     const maxPrice = 4000000
     const rooms = [1, 2, 3, 4, 5]
